@@ -578,26 +578,25 @@ link h3 {
 
 }
 
-/* Media queries para dispositivos pequeños */
 @media (max-width: 767px) {
     .menu {
         flex-direction: column;
         align-items: flex-start;
-        left: 0; /* Ajuste de posición para dispositivos pequeños */
-        width: 100%; /* Ajuste de ancho para dispositivos pequeños */
-        padding: 10px 0; /* Ajuste de espaciado */
+        left: 0; 
+        width: 100%; 
+        padding: 10px 0; 
     }
 
     .menu label {
-        left: 10px; /* Ajuste de posición */
+        left: 10px; 
     }
 
     .menu .nav-bar {
         display: none;
-        position: relative; /* Ajuste de posición */
-        left: 0; /* Ajuste de posición */
-        width: 100%; /* Ajuste de ancho */
-        text-align: center; /* Ajuste de alineación de texto */
+        position: relative; 
+        left: 0; 
+        width: 100%; 
+        text-align: center; 
         background-color: rgba(0,0,0,0.7);
         padding: 20px 0;
     }
@@ -608,20 +607,20 @@ link h3 {
 
     #menu:checked + .menu .nav-bar {
         display: block;
-        position: absolute; /* Ajuste de posición */
-        top: 100%; /* Ajuste de posición */
-        left: 0; /* Ajuste de posición */
-        width: 100%; /* Ajuste de ancho */
-        z-index: 1; /* Ajuste de z-index */
+        position: absolute; 
+        top: 100%;
+        left: 0; 
+        width: 100%; 
+        z-index: 1; 
     }
 
     .header-content h1 {
-        font-size: 30px; /* Ajuste de tamaño de fuente */
+        font-size: 30px; 
     }
     
 
     .header-content p {
-        font-size: 14px; /* Ajuste de tamaño de fuente */
-        padding: 0 10px; /* Ajuste de espaciado */
+        font-size: 14px;
+        padding: 0 10px; 
     }
 }
