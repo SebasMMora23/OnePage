@@ -1,48 +1,70 @@
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    var form = event.target;
-    var isValid = true;
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contactForm");
 
-    // Validación de campos
-    var fields = ['name', 'email', 'service', 'message'];
-    fields.forEach(function(field) {
-        var input = document.getElementById(field);
-        if (!input.value.trim()) {
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        let isValid = true;
+        
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const service = document.getElementById("service");
+        const genderMale = document.getElementById("male");
+        const genderFemale = document.getElementById("female");
+        const terms = document.getElementById("terms");
+        const image = document.getElementById("image");
+        const message = document.getElementById("message");
+
+        //valida nombre
+        if (name.value.trim() === "") {
             isValid = false;
-            input.style.border = '2px solid red';
-        } else {
-            input.style.border = '1px solid #ccc';
+            alert("El nombre es obligatorio");
+        }
+
+        //valida email
+        if (!validateEmail(email.value)) {
+            isValid = false;
+            alert("El correo electrónico no es válido");
+        }
+
+        //valida selección de servicio
+        if (service.value === "") {
+            isValid = false;
+            alert("Debe seleccionar un servicio");
+        }
+
+        //valida género
+        if (!genderMale.checked && !genderFemale.checked) {
+            isValid = false;
+            alert("Debe seleccionar un género");
+        }
+
+        //valida aceptar de términos
+        if (!terms.checked) {
+            isValid = false;
+            alert("Debe aceptar los términos y condiciones");
+        }
+
+        //valida imagen
+        if (image.files.length === 0) {
+            isValid = false;
+            alert("Debe subir una imagen");
+        }
+
+        //valida mensaje
+        if (message.value.trim() === "") {
+            isValid = false;
+            alert("El mensaje es obligatorio");
+        }
+
+        if (isValid) {
+            alert("Formulario enviado correctamente");
+            form.submit();
         }
     });
 
-    // Validación de género
-    var gender = document.querySelector('input[name="gender"]:checked');
-    if (!gender) {
-        isValid = false;
-        document.getElementById('male').parentElement.style.color = 'red';
-    } else {
-        document.getElementById('male').parentElement.style.color = '#323337';
-    }
-
-    // Validación de términos y condiciones
-    var terms = document.getElementById('terms');
-    if (!terms.checked) {
-        isValid = false;
-        terms.parentElement.style.color = 'red';
-    } else {
-        terms.parentElement.style.color = '#323337';
-    }
-
-    // Validación de imagen
-    var image = document.getElementById('image');
-    if (!image.files.length) {
-        isValid = false;
-        image.style.border = '2px solid red';
-    } else {
-        image.style.border = '1px solid #ccc';
-    }
-
-    if (!isValid) {
-        event.preventDefault();
-        alert('Por favor, completa todos los campos obligatorios.');
+    function validateEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+        return re.test(String(email).toLowerCase());
     }
 });
